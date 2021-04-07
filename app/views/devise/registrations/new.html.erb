@@ -19,6 +19,12 @@
   </div> <br>
 
   <div class="field">
+    <%= f.label :country%><br/>
+    <%= f.country_select :country, default:'nothing' %>
+    
+  </div> <br>
+
+  <div class="field">
     <%= f.label :phone_number %><br />
     <%= f.text_field :phone_number, autofocus: true, required: true, autocomplete: "phone_number" %>
   </div><br>

@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :middle_name,              null: true, default: ""
       t.string :last_name,              null: false, default: ""
       t.string :phone_number,              null: false, default: ""
+      t.string :country,              null: false, default: ""
 
 
 

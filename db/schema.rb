@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_093346) do
     t.string "middle_name", default: ""
     t.string "last_name", default: "", null: false
     t.string "phone_number", default: "", null: false
+    t.string "country", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
