@@ -20,13 +20,13 @@
 
   <div class="field">
     <%= f.label :country%><br/>
-    <%= f.country_select :country, default:'nothing' %>
+    <%= f.country_select :country, ["Pakistan"] %>
     
   </div> <br>
 
   <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true, required: true, autocomplete: "phone_number" %>
+    <%= f.label "Phone Number (xxxx xxxxxxx)" %><br />
+    <%= f.telephone_field :phone_number, autofocus: true, required: true, pattern: '([0-9]{11})', max: 11, autocomplete: "phone_number" %>
   </div><br>
 
   <div class="field">
@@ -39,7 +39,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, required: true, autocomplete: "new-password" %>
+    <%= f.password_field :password, required: true, autocomplete: "new-password", minimum_length: '7', pattern: '(?=.*[a-z])(?=.*[A-Z])(?=.*[! \" ? $ % ^ & ().])' %>
   </div><br>
 
   <div class="field">
