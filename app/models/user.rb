@@ -10,11 +10,13 @@ class User < ApplicationRecord
 
   def password_uppercase
     return if !!password.match(/\p{Upper}/)
+
     errors.add :password, 'must contain at least 1 uppercase '
   end
 
   def password_lower_case
     return if !!password.match(/\p{Lower}/)
+
     errors.add :password, 'must contain at least 1 lowercase '
   end
 
@@ -22,6 +24,7 @@ class User < ApplicationRecord
     special = "! \" ? $ % ^ & ()."
     regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
     return if password =~ regex
+    
     errors.add :password, 'must contain special character'
   end
 end
