@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
+  enum role: [:user, :admin]  # Using enums to differentiale between a normal user and an admin type user
   validates :phone_number, length: { is: 11 }
   validate :password_lower_case
   validate :password_uppercase
