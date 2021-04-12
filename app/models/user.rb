@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   PASSWORD_LENGTH = 11
-  ROLES = {client:'client', admin:'admin'}
+  ROLES = {user: 'user', admin: 'admin'}
   enum role: ROLES
   validates :phone_number, length: { is: PASSWORD_LENGTH }
   validate :password_lower_case
