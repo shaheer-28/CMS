@@ -1,0 +1,35 @@
+<h1>Welcome to CMS. You are logged in as an Admin</h1>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Middle Name</th>
+		<th>Last Name</th>
+		<th>country</th>
+		<th>Phone Number</th>
+		<th>Email</th>
+		<th colspan="3" ></th>
+	</tr>
+
+	<%= render @users %>
+
+</table>
+
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
