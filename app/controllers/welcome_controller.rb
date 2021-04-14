@@ -1,12 +1,12 @@
 class WelcomeController < ApplicationController
-	before_action :check_user_logged_in
+  before_action :check_user_logged_in
 
-	def index
-	end
+  def index
+  end
 
-	private
+  private
 
-	def check_user_logged_in
-		redirect_to new_user_session_path if user_signed_in?
-	end
+  def check_user_logged_in
+    redirect_to new_user_session_path if user_signed_in?
+  end
 end
