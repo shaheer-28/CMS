@@ -8,6 +8,8 @@ class User < ApplicationRecord
   ROLES = {user: 'user', admin: 'admin'}
   enum role: ROLES
 
+  scope :by_role, ->(role) { where(role: role) }
+
   validates :phone_number, length: { is: PASSWORD_LENGTH }
   validate :password_lower_case
   validate :password_uppercase
