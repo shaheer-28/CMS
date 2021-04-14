@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :check_user_logged_in
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
   end
