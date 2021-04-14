@@ -8,6 +8,9 @@ class WelcomeController < ApplicationController
   private
 
   def check_user_logged_in
-    redirect_to new_user_session_path if user_signed_in?
+    if user_signed_in?
+      redirect_to admin_users_path if current_user.admin?
+      redirect_to users_path if current_user.user?
+    end
   end
 end
