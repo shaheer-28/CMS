@@ -1,16 +1,16 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   
-  PASSWORD_LENGTH = 11
+  PHONE_NUMBER_LENGTH = 11
   ROLES = {user: 'user', admin: 'admin'}
   enum role: ROLES
 
   scope :by_role, ->(role) { where(role: role) }
 
-  validates :phone_number, length: { is: PASSWORD_LENGTH }
+  validates :phone_number, length: { is: PHONE_NUMBER_LENGTH } 
   validate :password_lower_case
   validate :password_uppercase
   validate :password_special_char
