@@ -11,9 +11,9 @@ class User < ApplicationRecord
   scope :by_role, ->(role) { where(role: role) }
 
   validates :phone_number, length: { is: PASSWORD_LENGTH }
-  validate :password_lower_case
-  validate :password_uppercase
-  validate :password_special_char
+  validate :password_lower_case, unless: :update
+  validate :password_uppercase, unless: :update
+  validate :password_special_char, unless: :update
 
   def password_uppercase
     return if !!password.match(/\p{Upper}/)

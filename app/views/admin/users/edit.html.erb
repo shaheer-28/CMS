@@ -1,0 +1,33 @@
+<%= form_for [:admin, @user] do |f| %>
+  <table id="show_user_table">
+    <tr>
+      <th><%= f.label :first_name %></th>
+      <td><%= f.text_field :first_name, autofocus: true, required: true, autocomplete: "first_name" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :middle_name %></th>
+      <td><%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :last_name%></th>
+      <td><%= f.text_field :last_name, autofocus: true, required: true, autocomplete: "last_name" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :country%></th>
+      <td><%= f.country_select :country %></td>
+    </tr>
+    <tr>
+      <th><%= f.label "Phone Number (xxxx xxxxxxx)" %></th>
+      <td><%= f.telephone_field :phone_number, autofocus: true, required: true, pattern: '([0-9]{11})', max: 11, autocomplete: "phone_number" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :email %></th>
+      <td><%= f.email_field :email, autofocus: true, required: true, autocomplete: "email" %></td>
+    </tr>
+  </table>
+
+  <%= f.submit "Update", disable_with: 'Updating...' %>
+<% end %>
+
+<br />
+<%= link_to "Back", admin_users_path %>
