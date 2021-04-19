@@ -1,5 +1,11 @@
 <table id="show_user_table">
   <tr>
+    <th>Profile Picture</th>
+    <% if @user.avatar.attached?%>
+      <td><img src="<%=(url_for(@user.avatar))%>"></td>
+    <% end %>
+  </tr>
+  <tr>
     <th>First Name</th>
     <td><%= @user.first_name %></td>
   </tr>

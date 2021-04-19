@@ -1,6 +1,13 @@
 <%= form_for [:admin, @user] do |f| %>
   <table id="show_user_table">
     <tr>
+      <th><%= f.label "Profile Photo" %></th>
+      <td><%= f.file_field :avatar %></td>
+      <% if @user.avatar.attached?%>
+        <td><img src="<%=(url_for(@user.avatar))%>"></td>
+      <% end %>
+    </tr>
+    <tr>
       <th><%= f.label :first_name %></th>
       <td><%= f.text_field :first_name, autofocus: true, required: true, autocomplete: "first_name" %></td>
     </tr>

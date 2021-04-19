@@ -12,6 +12,7 @@ class Admin::UsersController < ApplicationController
   def edit; end
 
   def update
+    @user.avatar.purge_later if @user.avatar.attached? && params[:avatar]
     @user.attributes = user_params
     if @user.save(validate: false)
       redirect_to admin_users_path
@@ -31,6 +32,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :middle_name, :last_name, :country, :phone_number, :email)
+    params.require(:user).permit(:first_name, :middle_name, :last_name, :country, :phone_number, :email, :avatar)
   end
 end
