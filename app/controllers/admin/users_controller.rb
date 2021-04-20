@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :get_user, only: %i[show update]
+  before_action :get_user, only: %i[show update destroy]
 
   def index
     @users = User.by_role(User.roles[:user])

@@ -3,32 +3,32 @@
 <%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="clearfix">
+  <div>
     <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true, required: true, autocomplete: :first_name %>
   </div>
 
-  <div class="clearfix">
+  <div>
     <%= f.label :middle_name %>
     <%= f.text_field :middle_name, autofocus: true, autocomplete: :middle_name %>
   </div>
 
-  <div class="clearfix">
-    <%= f.label :last_name%>
+  <div>
+    <%= f.label :last_name %>
     <%= f.text_field :last_name, autofocus: true, required: true, autocomplete: :last_name %>
   </div>
 
-  <div class="clearfix">
-    <%= f.label :country%>
+  <div >
+    <%= f.label :country %>
     <%= f.country_select :country, ["Pakistan"] %>
   </div>
 
-  <div class="clearfix">
+  <div>
     <%= f.label "Phone Number (xxxx xxxxxxx)" %>
     <%= f.telephone_field :phone_number, autofocus: true, required: true, pattern: '([0-9]{11})', max: 11, autocomplete: :phone_number %>
   </div>
 
-  <div class="clearfix">
+  <div>
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, required: true, autocomplete: :email %>
   </div>
