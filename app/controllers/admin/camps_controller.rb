@@ -3,10 +3,9 @@ class Admin::CampsController < ApplicationController
   
   before_action :check_role
   before_action :camp_params, only: %i[update create]
-  before_action :get_camp, only: %i[show edit update destroy]
+  before_action :set_camp, only: %i[show edit update destroy]
 
   def index
-    #@camps = Camp.all
     @pagy, @camps = pagy(Camp.all)
   end
 
@@ -18,7 +17,6 @@ class Admin::CampsController < ApplicationController
 
   def create
     @camp = Camp.new(location: params[:camp][:location])
-    p "CAMP = #{@camp.inspect}"
     if @camp.save
       flash[:notice] = 'Camp has been created'
       redirect_to admin_camp_path(@camp)
@@ -51,7 +49,7 @@ class Admin::CampsController < ApplicationController
 
   private
 
-  def get_camp
+  def set_camp
     @camp = Camp.find(params[:id])
   end
   
