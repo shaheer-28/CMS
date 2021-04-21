@@ -1,0 +1,4 @@
+<%= CSV.generate_line Camp::CAMP_HEADERS -%>
+<%- @all_camps.each do |camp| -%>
+  <%= CSV.generate_line([camp.id, camp.location]) -%>
+<%- end -%>

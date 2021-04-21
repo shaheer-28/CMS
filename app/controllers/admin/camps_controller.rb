@@ -1,13 +1,30 @@
 class Admin::CampsController < ApplicationController
   include Pagy::Backend
+  include Orderable
+
+  require 'csv'
+
+  helper_method :sort_column, :sort_direction
   
   before_action :check_role
   before_action :camp_params, only: %i[update create]
-  before_action :get_camp, only: %i[show edit update destroy]
+  before_action :set_camp, only: %i[show edit update destroy]
 
   def index
-    #@camps = Camp.all
-    @pagy, @camps = pagy(Camp.all)
+    @all_camps = Camp.all
+    @pagy, @camps = pagy(Camp.search(params[:search_key]), items: Camp::CAMPS_PER_PAGE)
+
+    if sort_column(@camps).present? && sort_direction.present?
+      @camps = @camps.order(sort_column(@camps) + ' ' + sort_direction)
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"locations-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   def show; end
@@ -18,7 +35,6 @@ class Admin::CampsController < ApplicationController
 
   def create
     @camp = Camp.new(location: params[:camp][:location])
-    p "CAMP = #{@camp.inspect}"
     if @camp.save
       flash[:notice] = 'Camp has been created'
       redirect_to admin_camp_path(@camp)
@@ -51,7 +67,7 @@ class Admin::CampsController < ApplicationController
 
   private
 
-  def get_camp
+  def set_camp
     @camp = Camp.find(params[:id])
   end
   
@@ -60,6 +76,6 @@ class Admin::CampsController < ApplicationController
   end
 
   def camp_params
-    params.require(:camp).permit(:location)
+    params.require(:camp).permit(:location, :search_key)
   end
 end
