@@ -1,10 +1,10 @@
 <%= form_for [:admin, @user] do |f| %>
-  <table id="show_user_table">
+  <table id="show-user-table">
     <tr>
       <th><%= f.label "Profile Photo" %></th>
       <td><%= f.file_field :avatar %></td>
-      <% if @user.avatar.attached?%>
-        <td><img src="<%=(url_for(@user.avatar))%>"></td>
+      <% if @user.avatar.attached? %>
+        <td><%= image_tag(@user.avatar) %></td>
       <% end %>
     </tr>
     <tr>
@@ -16,11 +16,11 @@
       <td><%= f.text_field :middle_name, autofocus: true, autocomplete: "middle_name" %></td>
     </tr>
     <tr>
-      <th><%= f.label :last_name%></th>
+      <th><%= f.label :last_name %></th>
       <td><%= f.text_field :last_name, autofocus: true, required: true, autocomplete: "last_name" %></td>
     </tr>
     <tr>
-      <th><%= f.label :country%></th>
+      <th><%= f.label :country %></th>
       <td><%= f.country_select :country %></td>
     </tr>
     <tr>

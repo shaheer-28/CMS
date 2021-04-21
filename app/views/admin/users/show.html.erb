@@ -1,8 +1,8 @@
-<table id="show_user_table">
+<table id="show-user-table">
   <tr>
     <th>Profile Picture</th>
     <% if @user.avatar.attached?%>
-      <td><img src="<%=(url_for(@user.avatar))%>"></td>
+      <td><%= image_tag(@user.avatar) %></td>
     <% end %>
   </tr>
   <tr>

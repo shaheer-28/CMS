@@ -4,10 +4,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def update
-    p "NORMAL USER KA CONTROLLER"
-  end
-
   private
 
   def check_role
