@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
       stored_location_for(resource) || users_path
     end
   end
+
+  protected
+
+  # => Method used by devse_inviter to confirm that only valid users can send invitations.
+  def authenticate_inviter!
+    authenticate_user!(force: true)
+  end
 end

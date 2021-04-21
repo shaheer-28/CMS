@@ -12,4 +12,5 @@
   <%= render @users %>
 </table>
 
+<%= link_to "Invite a new user", new_user_invitation_path %><br>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
