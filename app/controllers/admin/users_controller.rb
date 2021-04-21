@@ -14,6 +14,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user.avatar.purge_later if @user.avatar.attached? && params[:avatar]
     @user.attributes = user_params
+    
     if @user.save(validate: false)
       redirect_to admin_users_path
     else
