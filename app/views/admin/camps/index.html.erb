@@ -8,5 +8,5 @@
   </tr>
   <%= render @camps %>
 </table>
-
+<%== pagy_nav(@pagy).html_safe %>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>

@@ -1,10 +1,13 @@
 class Admin::CampsController < ApplicationController
+  include Pagy::Backend
+  
   before_action :check_role
   before_action :camp_params, only: %i[update create]
   before_action :get_camp, only: %i[show edit update destroy]
 
   def index
-    @camps = Camp.all
+    #@camps = Camp.all
+    @pagy, @camps = pagy(Camp.all)
   end
 
   def show; end
