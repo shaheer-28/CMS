@@ -5,12 +5,12 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
   attr_accessor :skip_password_validations
   
-  PASSWORD_LENGTH = 11
+  PHONE_NUMBER_LENGTH = 11
   ROLES = {user: 'user', admin: 'admin'}
   enum role: ROLES
 

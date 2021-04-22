@@ -19,7 +19,12 @@ class Admin::UsersController < Admin::AdminsController
       render 'edit'
     end
   end
-
+  
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path
+  end
+  
   private
 
   def set_user
