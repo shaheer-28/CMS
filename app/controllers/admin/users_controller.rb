@@ -1,7 +1,5 @@
-class Admin::UsersController < ApplicationController
-  before_action :check_role
-  before_action :get_user, only: [:show, :edit, :update]
-  before_action :user_params, only: :update
+class Admin::UsersController < Admin::AdminsController
+  before_action :set_user, only: [:show, :edit, :update]
 
   def index
     @users = User.by_role(User.roles[:user])
@@ -13,10 +11,10 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user.avatar.purge_later if @user.avatar.attached? && params[:avatar]
-    @user.attributes = user_params
-    
-    if @user.save(validate: false)
-      redirect_to admin_users_path
+    @user.skip_password_validations = true
+
+    if @user.update_without_password(user_params)
+      redirect_to admin_users_path, notice: 'User Updated'
     else
       render 'edit'
     end
@@ -24,12 +22,14 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  def check_role
-    redirect_to users_path if current_user.user?
+  def set_user
+    @user = User.find(params[:id])
   end
 
-  def get_user
-    @user = User.find(params[:id])
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
   def user_params
