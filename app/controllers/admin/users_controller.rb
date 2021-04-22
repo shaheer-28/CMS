@@ -26,12 +26,6 @@ class Admin::UsersController < Admin::AdminsController
     @user = User.find(params[:id])
   end
 
-  protected
-
-  def update_resource(resource, params)
-    resource.update_without_password(params)
-  end
-
   def user_params
     params.require(:user).permit(:first_name, :middle_name, :last_name, :country, :phone_number, :email, :avatar)
   end
