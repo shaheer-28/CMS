@@ -1,8 +1,14 @@
 class User < ApplicationRecord
+  has_one_attached :avatar, dependent: :destroy do |attachable|
+    attachable.variant :thumb, resize: "100x100"
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
+
+  attr_accessor :skip_password_validations
   
   PHONE_NUMBER_LENGTH = 11
   ROLES = {user: 'user', admin: 'admin'}
@@ -10,10 +16,14 @@ class User < ApplicationRecord
 
   scope :by_role, ->(role) { where(role: role) }
 
-  validates :phone_number, length: { is: PHONE_NUMBER_LENGTH } 
-  validate :password_lower_case
-  validate :password_uppercase
-  validate :password_special_char
+  validates :phone_number, length: { is: PASSWORD_LENGTH }
+  validate :password_lower_case, unless: :skip_password_validations
+  validate :password_uppercase, unless: :skip_password_validations
+  validate :password_special_char, unless: :skip_password_validations
+
+  def skip_password_validations
+    @skip_password_validations ||= false
+  end
 
   def password_uppercase
     return if !!password.match(/\p{Upper}/)

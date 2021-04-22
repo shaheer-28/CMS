@@ -1,4 +1,10 @@
-<table id="show_user_table">
+<table id="show-user-table">
+  <tr>
+    <th>Profile Picture</th>
+    <% if @user.avatar.attached? %>
+      <td><%= image_tag(@user.avatar) %></td>
+    <% end %>
+  </tr>
   <tr>
     <th>First Name</th>
     <td><%= @user.first_name %></td>
