@@ -1,3 +1,3 @@
 class Camp < ApplicationRecord
-  validates :location, :presence => true
+  validates :location, presence: true
 end

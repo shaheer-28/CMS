@@ -1,7 +1,6 @@
-class Admin::CampsController < ApplicationController
+class Admin::CampsController < Admin::AdminsController
   include Pagy::Backend
   
-  before_action :check_role
   before_action :camp_params, only: %i[update create]
   before_action :set_camp, only: %i[show edit update destroy]
 
@@ -18,23 +17,19 @@ class Admin::CampsController < ApplicationController
   def create
     @camp = Camp.new(location: params[:camp][:location])
     if @camp.save
-      flash[:notice] = 'Camp has been created'
-      redirect_to admin_camp_path(@camp)
+      redirect_to admin_camp_path(@camp), notice: 'Camp has been created'
     else
-      flash[:alert] = 'Unable to create Camp'
-      render 'new'
+      render 'new', alert: 'Unable to create Camp'
     end
   end
 
   def edit; end
 
   def update
-    if @camp.update(location: params[:camp][:location])
-      flash[:notice] = 'Camp has been updated'
-      redirect_to admin_camps_path
+    if @camp.update(location: params.dig(:camp, :location)
+      redirect_to admin_camps_path, notice: 'Camp has been updated'
     else
-      flash[:alert] = 'Unable to update Camp'
-      render 'edit'
+      render 'edit', notice: 'Unable to update Camp'
     end
   end
 
@@ -53,10 +48,6 @@ class Admin::CampsController < ApplicationController
     @camp = Camp.find(params[:id])
   end
   
-  def check_role
-    redirect_to users_path if current_user.user?
-  end
-
   def camp_params
     params.require(:camp).permit(:location)
   end
