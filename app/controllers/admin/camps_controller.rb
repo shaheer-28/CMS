@@ -15,21 +15,21 @@ class Admin::CampsController < Admin::AdminsController
   end
 
   def create
-    @camp = Camp.new(location: params[:camp][:location])
+    @camp = Camp.new(location: params.dig(:camp, :location))
     if @camp.save
       redirect_to admin_camp_path(@camp), notice: 'Camp has been created'
     else
-      render 'new', alert: 'Unable to create Camp'
+      render 'new', alert: @camp.errors.full_messages.to_sentence
     end
   end
 
   def edit; end
 
   def update
-    if @camp.update(location: params.dig(:camp, :location)
+    if @camp.update(location: params.dig(:camp, :location))
       redirect_to admin_camps_path, notice: 'Camp has been updated'
     else
-      render 'edit', notice: 'Unable to update Camp'
+      render 'edit', notice: @camp.errors.full_messages.to_sentence
     end
   end
 
@@ -37,7 +37,7 @@ class Admin::CampsController < Admin::AdminsController
     if @camp.destroy
       flash[:notice] = 'Camp has been deleted'
     else
-      flash[:alert] = 'Unable to delete Camp'
+      flash[:alert] = @camp.errors.full_messages.to_sentence
     end
     redirect_to admin_camps_path
   end
