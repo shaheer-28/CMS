@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   attr_accessor :skip_password_validations
   
-  PHONE_NUMBER_LENGTH = 11
+  PASSWORD_LENGTH = 11
   ROLES = {user: 'user', admin: 'admin'}
   enum role: ROLES
 
