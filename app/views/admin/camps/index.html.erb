@@ -1,0 +1,12 @@
+<%= link_to "Users Listing", admin_users_path %><br>
+<%= link_to "Add New Camp Location", new_admin_camp_path %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Location</th>
+    <th colspan="3"></th>
+  </tr>
+  <%= render @camps %>
+</table>
+<%== pagy_nav(@pagy).html_safe %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>

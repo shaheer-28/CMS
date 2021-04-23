@@ -16,13 +16,12 @@ class Admin::UsersController < Admin::AdminsController
     if @user.update_without_password(user_params)
       redirect_to admin_users_path, notice: 'User Updated'
     else
-      render 'edit'
+      render 'edit', notice: @user.errors.full_messages.to_sentence
     end
   end
   
   def destroy
-    @user.destroy
-    redirect_to admin_users_path
+    redirect_to admin_users_path, notice:(@user.destroy ? @user.errors.full_messages.to_sentence : 'User Deleted')
   end
   
   private

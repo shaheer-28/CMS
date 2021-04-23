@@ -1,0 +1,9 @@
+#log-in {
+  width: 20%;
+  margin: auto;
+}
+
+.field, .actions, h2 {
+  margin: auto;
+  text-align: center;
+}
