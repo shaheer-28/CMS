@@ -1,0 +1,7 @@
+<tr>
+  <td><%= location.id %></td>
+  <td><%= location.location %></td>
+  <td><%= link_to 'Show', admin_location_path(location) %></td>
+  <td><%= link_to 'Edit', edit_admin_location_path(location) %></td>
+  <td><%= link_to 'Delete', admin_location_path(location), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
