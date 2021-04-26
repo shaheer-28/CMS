@@ -1,0 +1,4 @@
+<%= CSV.generate_line Location::LOCATIONS_HEADERS -%>
+<%- @all_locations.each do |location| -%>
+  <%= CSV.generate_line([location.id, location.location]) -%>
+<%- end -%>

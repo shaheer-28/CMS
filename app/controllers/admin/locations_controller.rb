@@ -1,6 +1,8 @@
 class Admin::LocationsController < Admin::AdminsController
   include Pagy::Backend
 
+  require 'csv'
+
   helper_method :sort_column, :sort_direction
   
   before_action :location_params, only: %i[update create]
@@ -8,6 +10,15 @@ class Admin::LocationsController < Admin::AdminsController
 
   def index
     @pagy, @locations = pagy(Location.search(params[:search_key]).order(sort_column + ' ' + sort_direction), items: Location::LOCATIONS_PER_PAGE)
+
+    @all_locations = Location.all
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"locations-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   def show; end
