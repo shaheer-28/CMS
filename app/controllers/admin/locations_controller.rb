@@ -1,11 +1,13 @@
 class Admin::LocationsController < Admin::AdminsController
   include Pagy::Backend
+
+  helper_method :sort_column, :sort_direction
   
   before_action :location_params, only: %i[update create]
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @pagy, @locations = pagy(Location.search(params[:search_key]), items: Location::LOCATIONS_PER_PAGE)
+    @pagy, @locations = pagy(Location.search(params[:search_key]).order(sort_column + ' ' + sort_direction), items: Location::LOCATIONS_PER_PAGE)
   end
 
   def show; end
@@ -50,5 +52,13 @@ class Admin::LocationsController < Admin::AdminsController
   
   def location_params
     params.require(:location).permit(:location)
+  end
+
+  def sort_column
+    params[:sort] || "id"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end
