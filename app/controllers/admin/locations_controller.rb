@@ -5,7 +5,7 @@ class Admin::LocationsController < Admin::AdminsController
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
-    @pagy, @locations = pagy(Location.all)
+    @pagy, @locations = pagy(Location.search(params[:search_key]), items: Location::LOCATIONS_PER_PAGE)
   end
 
   def show; end
