@@ -1,0 +1,25 @@
+<%= form_for [:admin, @camp] do |f| %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Locations</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+    <tr>
+      <td><%= f.text_field :name, autofocus: true, required: true %></td>
+      <td>
+        <dl>
+          <%= f.collection_check_boxes :location_ids, Location.all, :id, :location do |b| %>
+            <dt><%= b.label("data-value": b.value) { b.check_box + " " + b.text } %></dt>
+          <% end %>
+        </dl>
+      </td>
+      <td><%= f.date_field :start_date, required: true %></td>
+      <td><%= f.date_field :end_date, required: true %></td>
+    </tr>
+  </table>
+
+  <%= f.submit %>
+<% end %>
+<br><%= link_to "Back", admin_camps_path %>

@@ -1,0 +1,16 @@
+<%= link_to "Users Listing", admin_users_path %><br>
+<%= link_to "Add New Location", new_admin_location_path %><br>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Locations</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+  </tr>
+  <%= render @camps %>
+</table>
+
+<%= link_to "Add New Camp", new_admin_camp_path %>
