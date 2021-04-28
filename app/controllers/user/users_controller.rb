@@ -1,4 +1,4 @@
-class Users::UsersController < ApplicationController
+class User::UsersController < ApplicationController
   before_action :authorize_user
 
   def authorize_user

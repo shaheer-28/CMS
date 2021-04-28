@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     end
   end
   
-  namespace :users do
-    resources :camps
+  namespace :user do
+    resources :camps do
+      get :introduction, on: :member
+    end
+    resources :users
   end
 end

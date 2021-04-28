@@ -1,0 +1,14 @@
+<tr>
+  <td><%= camp.name %></td>
+  <td>
+    <ul>
+      <% camp.locations.map do |l| %>
+        <li><%= l.location %></li>
+      <% end %>
+    </ul>
+  </td>
+  <td><%= camp.start_date %></td>
+  <td><%= camp.end_date %></td>
+  <td><%= camp.status %></td>
+  <td><%= button_to "Select Camp", introduction_user_camp_path(camp), method: :get, class: "btn btn-primary" %></td>
+</tr>
