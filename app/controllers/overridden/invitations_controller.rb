@@ -1,4 +1,4 @@
-class Users::InvitationsController < Devise::InvitationsController
+class Overridden::InvitationsController < Devise::InvitationsController
   before_action :validate_admin, only: %i[create new]
 
   def new
