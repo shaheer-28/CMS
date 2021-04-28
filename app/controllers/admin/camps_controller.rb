@@ -32,6 +32,10 @@ class Admin::CampsController < Admin::AdminsController
   #   end
   # end
 
+  def status_update
+    p camp_params.inspect
+  end
+
   def destroy
     if @camp.destroy
       flash[:notice] = 'Camp has been deleted'

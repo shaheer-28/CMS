@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :locations
-    resources :camps
+    resources :camps do
+      patch :update_status, on: :member  
+    end
   end
   
   resources :users

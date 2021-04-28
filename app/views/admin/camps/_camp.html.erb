@@ -12,7 +12,8 @@
   <td><%= camp.status %></td>
   <td>
     <label class="switch">
-      <input type="checkbox" class="camp-status rounded-pill" >
+      <input type="checkbox" class="camp-status rounded-pill" data-remote="true"
+    data-url="camps/status_update" data-params="id="+camp.id.to_s data-method="patch" >
       <span class="slider"></span>
     </label>
   </td>
