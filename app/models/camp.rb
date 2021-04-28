@@ -1,5 +1,5 @@
 class Camp < ApplicationRecord
-  has_many :camps_locations
+  has_many :camps_locations, dependent: :destroy
   has_many :locations, through: :camps_locations
 
   STATUSES = { active: 'active', inactive: 'inactive' }

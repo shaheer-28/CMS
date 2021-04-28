@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :camps_locations
+  has_many :camps_locations, dependent: :destroy
   has_many :camps, through: :camps_locations
 
   validates :location, presence: true
