@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_201236) do
+ActiveRecord::Schema.define(version: 2021_04_28_211628) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,27 @@ ActiveRecord::Schema.define(version: 2021_04_26_201236) do
     t.bigint "camp_id"
     t.index ["camp_id"], name: "index_camps_locations_on_camp_id"
     t.index ["location_id"], name: "index_camps_locations_on_location_id"
+  end
+
+  create_table "camps_registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "camp_id"
+    t.bigint "user_id"
+    t.date "dob"
+    t.integer "age"
+    t.string "address", default: ""
+    t.string "gender", default: "male"
+    t.string "disability", default: ""
+    t.string "medical_services", default: ""
+    t.string "activity_of_interest", default: ""
+    t.boolean "first_camp", default: true
+    t.boolean "need_power_bank", default: false
+    t.string "social_media_presence", default: ""
+    t.string "emergency_contact", default: ""
+    t.text "suggestion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["camp_id"], name: "index_camps_registrations_on_camp_id"
+    t.index ["user_id"], name: "index_camps_registrations_on_user_id"
   end
 
   create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

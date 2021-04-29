@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy do |attachable|
     attachable.variant :thumb, resize: "100x100"
   end
+  has_many :camps_registrations, dependent: :destroy
+  has_many :camps, through: :camps_registrations
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
