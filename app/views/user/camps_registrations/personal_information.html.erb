@@ -1,0 +1,48 @@
+<h1>Personal Information</h1>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  
+  <%= f.fields_for @camps_registration.user do |u| %>
+    <div class="form-group mb-2">
+      <%= u.label :email, class: "form-control-label" %>
+      <%= u.text_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2">
+      <%= u.label :first_name, class: "form-control-label" %>
+      <%= u.text_field :first_name, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2">
+      <%= u.label :middle_name, class: "form-control-label" %>
+      <%= u.text_field :middle_name, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2">
+      <%= u.label :last_name, class: "form-control-label" %>
+      <%= u.text_field :last_name, class: "form-control" %>
+    </div>
+    <div class="form-group mb-2">
+      <%= u.label :phone_number, class: "form-control-label" %>
+      <%= u.text_field :phone_number, class: "form-control" %>
+    </div>
+
+  <% end %>
+  <div>
+    <%= f.label "Select Gender" %>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= f.radio_button("gender", "male") %>
+        <%= f.label "Male" %>
+      </div>
+      <div class="col-sm-2">
+        <%= f.radio_button("gender", "female") %>
+        <%= f.label "Female" %>
+      </div>
+      <div class="col-sm-2">
+        <%= f.radio_button("gender", "other") %>
+      <%= f.label "Other" %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Next", class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'Skip', next_wizard_path %><br>
+<%= link_to 'Leave Application', user_camps_path %>

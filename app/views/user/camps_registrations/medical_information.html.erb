@@ -1,0 +1,10 @@
+<h1>MEDICAL INFORMATION</h1>
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label :disability %><br>
+  <%=  f.text_field :disability  %><br><br>
+  <%= f.label :medical_services %><br>
+  <%=  f.text_field :medical_services %><br><br>
+  <%= f.submit "Next", class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'skip', next_wizard_path %>
+<%= link_to "Back", previous_wizard_path %>

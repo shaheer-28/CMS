@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :camps do
       get :introduction, on: :member
     end
+    resources :camps_registrations
     resources :users
   end
 end

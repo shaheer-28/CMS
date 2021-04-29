@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_211628) do
     t.string "disability", default: ""
     t.string "medical_services", default: ""
     t.string "activity_of_interest", default: ""
-    t.boolean "first_camp", default: true
+    t.boolean "is_first_camp", default: true
     t.boolean "need_power_bank", default: false
     t.string "social_media_presence", default: ""
     t.string "emergency_contact", default: ""

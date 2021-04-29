@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
   def check_user_logged_in
     if user_signed_in?
       redirect_to admin_locations_path if current_user.admin?
-      redirect_to users_camps_path if current_user.user?
+      redirect_to user_camps_path if current_user.user?
     end
   end
 end
