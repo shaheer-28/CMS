@@ -4,9 +4,7 @@ class Camp < ApplicationRecord
   has_many :camps_registrations, dependent: :destroy
   has_many :users, through: :camps_registrations
 
-  STATUSES = { active: 'active', inactive: 'inactive' }
-
-  enum status: STATUSES
+  STATUSES = { active: 'true', inactive: 'false' }
 
   validate :camp_dates
 

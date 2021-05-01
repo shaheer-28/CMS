@@ -32,8 +32,11 @@ class Admin::CampsController < Admin::AdminsController
   #   end
   # end
 
-  def status_update
-    p camp_params.inspect
+  def update_status
+    @camp = Camp.find(params[:id])
+    @camp_status = @camp.status == "active" ? "inactive" : "active"
+    @camp.update(status: @camp_status)
+    @camps = Camp.all
   end
 
   def destroy
