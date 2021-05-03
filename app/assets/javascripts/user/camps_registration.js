@@ -1,5 +1,7 @@
 $(document).on('ready turbolinks:load', () => {
+
   hideForms();
+  modalScript();
 
   if ($('#diability-input-field').val() != "") {
     $('#medical-services-question').addClass("d-none");
@@ -47,5 +49,12 @@ window.hideForms = function(){
       $("#medical-input").val("");
       $('#medical-services').addClass("d-none");
     }
+  });
+}
+
+window.modalScript = function(){
+  $('#popup').click(function() {
+    event.preventDefault();
+    $('#myModal').modal('show');
   });
 }

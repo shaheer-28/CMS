@@ -3,14 +3,20 @@ class User::CampsRegistrationsController < User::UsersController
 
   before_action :set_progress, only: [:show]
   before_action :personal_information_params, only: :update
+  before_action :check_application_complete
 
   steps :dashboard, :personal_information, :medical_information, :user_age, :user_dob, :emergency_contact_information, :activities, :is_first_camp, :need_power_bank, :social_media_presence, :suggestions
 
   def show
+    respond_to do |format|
+      format.html
+      format.js { render :file => "/camps_registrations/show.js.erb" }
+    end
+    @wizard_steps = wizard_steps
     @user = current_user
     @camps_registration = CampsRegistration.find(session[:camp_reg_id])
     #redirect_to wizard_path(:dashboard) if @camps_registration.application_complete
-    @activities_dropdown_list = ["Bonfire", "Cards", "Musical night", "Boating"]
+    @activities_dropdown_list = ["", "Bonfire", "Cards", "Musical night", "Boating"]
     render_wizard
   end
 
@@ -25,8 +31,10 @@ class User::CampsRegistrationsController < User::UsersController
         @camps_registration.update(filled_screen1: true)
       end
       @camps_registration.update_attributes(gender: gender)
-      @camps_registration.user_image.purge_later if @camps_registration.user_image.attached? && user_image
-      @camps_registration.user_image.attach(user_image)
+      if @camps_registration.user_image.attached? && user_image
+        @camps_registration.user_image.purge_later
+        @camps_registration.user_image.attach(user_image)
+      end
       
     when :medical_information
       disability_param = params.dig(:camps_registration, :disability)
@@ -96,10 +104,12 @@ class User::CampsRegistrationsController < User::UsersController
     when :suggestions
       suggestion = params.dig(:camps_registration, :suggestion)
 
-      if suggestion && !@camps_registration.filled_screen10
+      if suggestion || !@camps_registration.filled_screen10
         @camps_registration.update(filled_screen10: true)
+        byebug
       end
       @camps_registration.update_attributes(suggestion: suggestion)
+
       if @camps_registration.application_completed == 100
         @camps_registration.update(application_complete: true)
         redirect_to (wizard_path(:dashboard)) and return
@@ -123,6 +133,13 @@ class User::CampsRegistrationsController < User::UsersController
       @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
     else
       @progress = 0
+    end
+  end
+
+  def check_application_complete
+    @camps_registration = CampsRegistration.find(session[:camp_reg_id])
+    if @camps_registration.application_complete && wizard_steps.index(step) != 0
+      redirect_to wizard_path(:dashboard), notice: "Cannot access Application after submitting"
     end
   end
 end
