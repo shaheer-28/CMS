@@ -1,12 +1,9 @@
 class Admin::CampsController < Admin::AdminsController
-  before_action :camp_params, only: %i[update create]
-  before_action :set_camp, only: %i[show edit update destroy]
+  before_action :set_camp, only: %i[destroy]
 
   def index
     @camps = Camp.all
   end
-
-  def show; end
 
   def new
     @camp = Camp.new
@@ -21,16 +18,6 @@ class Admin::CampsController < Admin::AdminsController
       render 'new', notice: @camp.errors.full_messages.to_sentence
     end
   end
-
-  # def edit; end
-
-  # def update
-  #   if @camp.update(location: params.dig(:camp, :location))
-  #     redirect_to admin_camps_path, notice: 'Camp has been updated'
-  #   else
-  #     render 'edit', notice: @camp.errors.full_messages.to_sentence
-  #   end
-  # end
 
   def update_status
     @camp = Camp.find(params[:id])

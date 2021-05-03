@@ -1,10 +1,49 @@
+<%= render 'progress' %>
 <h1>MEDICAL INFORMATION</h1>
 <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  <%= f.label :disability %><br>
-  <%=  f.text_field :disability  %><br><br>
-  <%= f.label :medical_services %><br>
-  <%=  f.text_field :medical_services %><br><br>
-  <%= f.submit "Next", class: "btn btn-primary" %>
+
+  <%= f.label "Do you have any disability ?" %>
+  <div class="row">
+    <div class="col-sm-2" id="disability-yes">
+      <%= f.radio_button("disability", "yes", checked: (@camps_registration.disability != "")) %>
+      <%= f.label "Yes" %>
+    </div>
+    <div class="col-sm-2" id="disability-no">
+      <%= f.radio_button("disability", "no", checked: (@camps_registration.disability == "")) %>
+      <%= f.label "No" %>
+    </div>
+  </div>
+  <div id="disability-input" class="d-none">
+    <%= f.label :disability %><br>
+    <%= f.text_field :disability, id: "diability-input-field" %>
+  </div>
+  <div id="medical-services-question"  class="d-none">
+    <%= f.label "Do you require some medical services?" %><br>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= check_box_tag 'check-yes', 'yes' %>
+        <%= f.label "yes" %>
+      </div>
+      <div class="col-sm-2">
+        <%= check_box_tag 'check-no', 'no' %>
+        <%= f.label "no" %>
+      </div>
+    </div>
+    <div id="medical-services">
+      <%= f.label :medical_services %><br>
+      <%= f.text_field :medical_services, id: "medical-input" %><br>
+    </div>
+  </div>
+  <br>
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>
-<%= link_to 'skip', next_wizard_path %>
-<%= link_to "Back", previous_wizard_path %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-9"></div>
+  <div class="col-sm-1">
+    <%= link_to 'skip', next_wizard_path %>
+  </div>
+</div>

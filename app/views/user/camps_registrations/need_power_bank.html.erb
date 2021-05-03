@@ -1,8 +1,17 @@
-<%= render 'progress' %><br>
+<%= render 'progress' %>
 
 <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  <%= f.label "Enter your age" %>
-  <%= f.text_field :age, id: "medical-input" %><br>
+  <%= f.label "Do you need a power bank on rent for the trip ?" %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.radio_button("need_power_bank", "true") %>
+      <%= f.label "Yes" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.radio_button("need_power_bank", "false") %>
+      <%= f.label "No" %>
+    </div>
+  </div>
   <%= f.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>
 

@@ -1,8 +1,8 @@
-<%= render 'progress' %><br>
+<%= render 'progress' %>
 
 <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  <%= f.label "Enter your age" %>
-  <%= f.text_field :age, id: "medical-input" %><br>
+  <%= f.label "Please enter link of any of your social media profile" %><br>
+  <%= f.text_field :social_media_presence %><br><br>
   <%= f.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>
 

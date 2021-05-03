@@ -1,0 +1,27 @@
+<%= render 'progress' %><br>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Is this your first trip with us ?" %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.radio_button("is_first_camp", "true") %>
+      <%= f.label "Yes" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.radio_button("is_first_camp", "false") %>
+      <%= f.label "No" %>
+    </div>
+  </div>
+    
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-8"></div>
+  <div class="col-sm-2">
+    <%= link_to 'skip', next_wizard_path %>
+  </div>
+</div>

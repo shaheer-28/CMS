@@ -54,16 +54,27 @@ ActiveRecord::Schema.define(version: 2021_04_28_211628) do
     t.bigint "user_id"
     t.date "dob"
     t.integer "age"
-    t.string "address", default: ""
-    t.string "gender", default: "male"
+    t.string "address"
+    t.string "gender"
     t.string "disability", default: ""
     t.string "medical_services", default: ""
-    t.string "activity_of_interest", default: ""
-    t.boolean "is_first_camp", default: true
-    t.boolean "need_power_bank", default: false
-    t.string "social_media_presence", default: ""
-    t.string "emergency_contact", default: ""
+    t.string "activity_of_interest"
+    t.boolean "is_first_camp"
+    t.boolean "need_power_bank"
+    t.string "social_media_presence"
+    t.string "emergency_contact"
     t.text "suggestion"
+    t.boolean "filled_screen1", default: false
+    t.boolean "filled_screen2", default: false
+    t.boolean "filled_screen3", default: false
+    t.boolean "filled_screen4", default: false
+    t.boolean "filled_screen5", default: false
+    t.boolean "filled_screen6", default: false
+    t.boolean "filled_screen7", default: false
+    t.boolean "filled_screen8", default: false
+    t.boolean "filled_screen9", default: false
+    t.boolean "filled_screen10", default: false
+    t.boolean "application_complete", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_camps_registrations_on_camp_id"

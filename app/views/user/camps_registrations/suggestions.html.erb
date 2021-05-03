@@ -1,1 +1,18 @@
-<%= link_to "Submit Application", finish_wizard_path %>
+<%= render 'progress' %>
+<h1>This is the last step of the application</h1>
+<p>If you submit the application now you will not be able to edit any part of it later.</p><br>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Please feel free to enter any suggestions that you have: " %><br>
+  <%= f.text_field :suggestion %><br><br>
+
+  <%= f.submit "Save Suggestion and submit application", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-9"></div>
+</div>
+

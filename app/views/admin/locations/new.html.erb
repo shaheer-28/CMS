@@ -1,5 +1,5 @@
 <%= form_for [:admin, @location] do |f| %>
-  <table id="show-camp-table">
+  <table class="table table-hover">
     <tr>
       <th><%= f.label "Location" %></th>
       <td><%= f.text_field :location, autofocus: true, required: true %> </td>

@@ -1,0 +1,12 @@
+<h1>This is the application dashboard</h1><br>
+<h2>You have completed <%= @camps_registration.application_completed %> % of the application.</h2>
+<div class="progress">
+  <div class="progress-bar" style="width: <%= @camps_registration.application_completed %>%"></div>
+</div>
+<br>
+<% if (!@camps_registration.application_complete) %>
+  <%= button_to "Camp Application", user_camps_registration_path("personal_information"), method: :get, class: "btn btn-primary btn-lg btn-block" %>
+<% else %>
+  <br>
+  <h3>You have completed your application and cannot view or edit the application now.</h3>
+<% end %>

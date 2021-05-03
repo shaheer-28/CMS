@@ -1,6 +1,9 @@
-<%= link_to "Locations Listing", admin_locations_path %>
-<table class="table">
-  <tr>
+<%= link_to "Camps Listing", admin_camps_path %><br>
+<%= link_to "Locations Listing", admin_locations_path %><br><br>
+<%= link_to "Invite a new user", new_user_invitation_path %><br>
+
+<table class="table table-hover">
+  <tr class="thead-dark">
     <th>First Name</th>
     <th>Middle Name</th>
     <th>Last Name</th>
@@ -12,5 +15,4 @@
   <%= render @users %>
 </table>
 
-<%= link_to "Invite a new user", new_user_invitation_path %><br>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>

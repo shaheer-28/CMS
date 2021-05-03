@@ -12,5 +12,9 @@
 
   <p>I AKNOWLEDGE AND AGREE THAT ANY INFORMATION PROVIDED IN THIS APPLICATION WILL BE COLLECTED AND PROCESSED IN ACCORDANCE WITH THE PRIVACY POLICY <%= link_to "privacy policy", "https://app.asana.com/0/1190276726178297/board" %>.</p>
 
-  <td><%= button_to "Start Camp", user_camps_registration_path("personal_information"), method: :get, class: "btn btn-primary btn-lg btn-block" %></td>
+  <% if @allow_to_proceed %>
+    <%= button_to "Application Dashboard", user_camps_registration_path("dashboard"), method: :get, class: "btn btn-primary btn-lg btn-block" %>
+  <% else %>
+    <p>Please participate in next camp. The date for this camp has passed. Thank You!</p>
+  <% end %>
 </div>

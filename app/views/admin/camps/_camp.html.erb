@@ -14,7 +14,7 @@
     <label class="switch">
       <input type="checkbox" class="camp-status rounded-pill" data-remote="true"
     data-url="/admin/camps/<%= camp.id %>/update_status" data-method="patch" <%= "checked" if camp.status == 'active' %> >
-      <span class="slider"></span>
+      <span class="slider round"></span>
     </label>
   </td>
   <td><%= link_to 'Show', admin_camp_path(camp) %></td>

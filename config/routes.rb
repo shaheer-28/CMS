@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :users
     resources :locations
     resources :camps do
-      patch :update_status, on: :member  
+      patch :update_status, on: :member
     end
   end
   

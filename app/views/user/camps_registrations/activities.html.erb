@@ -1,8 +1,8 @@
-<%= render 'progress' %><br>
+<%= render 'progress' %><br><br>
 
 <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  <%= f.label "Enter your age" %>
-  <%= f.text_field :age, id: "medical-input" %><br>
+  <%= f.label "Select the activity of your interest:" %>
+  <%= f.select :activity_of_interest, @activities_dropdown_list %><br><br>
   <%= f.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>
 
