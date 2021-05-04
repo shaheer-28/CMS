@@ -1,0 +1,11 @@
+<tr>
+  <td><%= camps_registration.id %></td>
+  <td><%= camps_registration.user.first_name %> <%= camps_registration.user.last_name %></td>
+  <td><%= camps_registration.user.email %></td>
+  <td><%= camps_registration.application_completed %>%</td>
+  <td><%= camps_registration.camp.name %></td>
+
+  <td><%= link_to 'Show', admin_camps_registration_path(camps_registration) %></td>
+  <td><%= link_to 'Edit', edit_admin_camps_registration_path(camps_registration) %></td>
+  <td><%= link_to 'Delete', admin_camps_registration_path(camps_registration), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :camps do
       patch :update_status, on: :member
     end
+    resources :camps_registrations
   end
   
   namespace :user do

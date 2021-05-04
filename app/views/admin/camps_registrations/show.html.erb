@@ -1,0 +1,24 @@
+<h1>User Application</h1><br>
+<h2><%= @camps_registration.user.first_name %> has filled <%= @camps_registration.application_completed %> % of the application.</h2>
+<div class="progress">
+  <div class="progress-bar" style="width: <%= @camps_registration.application_completed %>%"></div>
+</div>
+<br>
+<div>
+  <ul class="list-group">
+    <li class="list-group-item <%= @camps_registration.filled_screen1 ? 'active' : 'disabled' %>">Personal Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen2 ? 'active' : 'disabled' %>">Medical Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen3 ? 'active' : 'disabled' %>">Age</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen4 ? 'active' : 'disabled' %>">Date of birth</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen5 ? 'active' : 'disabled' %>">Emergency Contact Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen6 ? 'active' : 'disabled' %>">Activity of interest</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen7 ? 'active' : 'disabled' %>">Is this your first camp with us ?</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen8 ? 'active' : 'disabled' %>">Do you need any powerbank for the trip</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen9 ? 'active' : 'disabled' %>">Social Media Presence</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen10 ? 'active' : 'disabled' %>">Suggestion</li>
+  </ul>
+</div>
+<br>
+
+<%= link_to 'Back', admin_camps_registrations_path %>
+
