@@ -1,0 +1,21 @@
+<%= link_to "Users Listing", admin_users_path %><br>
+<%= link_to "Camps Listing", admin_camps_path %><br>
+<%= link_to "Locations Listing", admin_locations_path %><br><br>
+
+
+<table class="table table-hover">
+  <tr class="thead-dark">
+    <th>ID</th>
+    <th>Applicant Name</th>
+    <th>Applicant Email</th>
+    <th>Percentage completed</th>
+    <th>Camp Name</th>
+    <th colspan="3"></th>
+  </tr>
+
+  <tbody>
+    <%= render @camps_registrations %>
+  </tbody>
+</table>
+
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
