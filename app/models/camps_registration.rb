@@ -7,9 +7,7 @@ class CampsRegistration < ApplicationRecord
 
   def application_completed
     @completed_steps = 0
-    # @application_completed = progress.each { |e|
-    #   @completed_steps = @completed_steps + (1 if e.true)
-    # }
+    
     @completed_steps = @completed_steps + 1 if self.filled_screen1
     @completed_steps = @completed_steps + 1 if self.filled_screen2
     @completed_steps = @completed_steps + 1 if self.filled_screen3
