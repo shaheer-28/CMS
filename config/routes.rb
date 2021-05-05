@@ -19,4 +19,12 @@ Rails.application.routes.draw do
     resources :camps_registrations
     resources :users
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :camps_registrations do
+        
+      end
+    end
+  end
 end
