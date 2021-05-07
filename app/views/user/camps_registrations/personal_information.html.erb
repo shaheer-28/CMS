@@ -2,7 +2,6 @@
 
 <h1>Personal Information</h1>
 <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  
   <%= f.fields_for @camps_registration.user do |u| %>
     <div class="form-group mb-2">
       <%= u.label :email, class: "form-control-label" %>

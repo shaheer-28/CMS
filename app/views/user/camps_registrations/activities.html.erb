@@ -1,10 +1,12 @@
-<%= render 'progress' %><br><br>
+<%= render 'progress' %>
 
-<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
-  <%= f.label "Select the activity of your interest:" %>
-  <%= f.select :activity_of_interest, @activities_dropdown_list %><br><br>
-  <%= f.submit "Save Changes", class: "btn btn-primary" %>
-<% end %>
+<p>
+  <%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+    <%= f.label "Select the activity of your interest:" %>
+    <p><%= f.select :activity_of_interest, @activities_dropdown_list %></p>
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+  <% end %>
+</p>
 
 <div class="row">
   <div class="col-sm-2">
