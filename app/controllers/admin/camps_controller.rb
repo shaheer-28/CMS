@@ -21,7 +21,7 @@ class Admin::CampsController < Admin::AdminsController
 
   def update_status
     @camp = Camp.find(params[:id])
-    @camp_status = @camp.status == "active" ? "inactive" : "active"
+    @camp_status = @camp.active? ? "inactive" : "active"
     @camp.update(status: @camp_status)
     @camps = Camp.all
   end

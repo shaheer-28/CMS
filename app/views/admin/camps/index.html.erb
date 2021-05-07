@@ -3,7 +3,7 @@
 <%= link_to "Locations Listing", admin_locations_path %><br><br>
 <%= link_to "Add New Camp", new_admin_camp_path %><br>
 
-<table class="table table-hover">
+<table id="admin-camps-table" class="table table-hover">
   <%= render 'camp_table', camps: @camps %>
 </table>
 

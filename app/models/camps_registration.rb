@@ -3,6 +3,9 @@ class CampsRegistration < ApplicationRecord
   belongs_to :user
   has_one_attached :user_image
 
+  ACTIVITIES = ["Bonfire", "Cards", "Musical night", "Boating"]
+  PROGRESS_90 = 90
+
   attr_accessor :application_completed
 
   def application_completed

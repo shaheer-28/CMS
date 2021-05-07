@@ -1,28 +1,27 @@
 $(document).on('ready turbolinks:load', () => {
-
   hideForms();
   modalScript();
 
-  if ($('#diability-input-field').val() != "") {
-    $('#medical-services-question').addClass("d-none");
-    $('#disability-input').removeClass("d-none");
-  } else if ($('#diability-input-field').val() == "") {
+  if ($('#diability-input-field').val() == "") {
     $('#medical-services-question').removeClass("d-none");
     $('#disability-input').addClass("d-none");
 
-    if ($('#medical-input').val() != "") {
-      $('#check-no').prop('checked', false);
-      $('#check-yes').prop('checked', true);
-      $('#medical-services').removeClass("d-none");
-    } else{
+    if ($('#medical-input').val() == "") {
       $('#check-no').prop('checked', true);
       $('#check-yes').prop('checked', false);
       $('#medical-services-question').addClass("d-none");
+    } else{
+      $('#check-no').prop('checked', false);
+      $('#check-yes').prop('checked', true);
+      $('#medical-services').removeClass("d-none");
     }
+  } else if ($('#diability-input-field').val() != "") {
+    $('#medical-services-question').addClass("d-none");
+    $('#disability-input').removeClass("d-none");
   }
 });
 
-window.hideForms = function(){
+window.hideForms = function() {
 
   $('input[type="radio"]').click(function(){
     var inputValue = $(this).attr("value");
@@ -52,7 +51,7 @@ window.hideForms = function(){
   });
 }
 
-window.modalScript = function(){
+window.modalScript = function() {
   $('#popup').click(function() {
     event.preventDefault();
     $('#myModal').modal('show');

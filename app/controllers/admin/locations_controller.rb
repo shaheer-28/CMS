@@ -28,7 +28,7 @@ class Admin::LocationsController < Admin::AdminsController
   end
 
   def create
-    @location = Location.new(location: params.dig(:location, :location))
+    @location = Location.new(location: location_params)
     if @location.save
       redirect_to admin_location_path(@location), notice: 'Location has been created'
     else
@@ -39,7 +39,7 @@ class Admin::LocationsController < Admin::AdminsController
   def edit; end
 
   def update
-    if @location.update(location: params.dig(:location, :location))
+    if @location.update(location: location_params)
       redirect_to admin_locations_path, notice: 'Location has been updated'
     else
       render 'edit', notice: @location.errors.full_messages.to_sentence
@@ -62,7 +62,7 @@ class Admin::LocationsController < Admin::AdminsController
   end
   
   def location_params
-    params.require(:location).permit(:location)
+    params.dig(:location, :location)
   end
 
   def sort_column
@@ -70,6 +70,6 @@ class Admin::LocationsController < Admin::AdminsController
   end
   
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

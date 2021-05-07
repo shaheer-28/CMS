@@ -1,6 +1,4 @@
 class User::CampsController < User::UsersController
-  require 'date'
-
   before_action :set_camp, only: %i[show introduction]
   
   def index
@@ -9,7 +7,7 @@ class User::CampsController < User::UsersController
   end
 
   def introduction
-    @allow_to_proceed = true if @camp.end_date > Date.today
+    @allow_to_proceed = @camp.allow_to_proceed?
     if @allow_to_proceed
       @camp_reg = CampsRegistration.find_by(user_id: current_user.id, camp_id: params[:id])
 
