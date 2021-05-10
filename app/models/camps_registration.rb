@@ -4,7 +4,7 @@ class CampsRegistration < ApplicationRecord
   has_one_attached :user_image
 
   ACTIVITIES = ["Bonfire", "Cards", "Musical night", "Boating"]
-  PROGRESS_90 = 90
+  PROGRESS_VALUE = 90
 
   attr_accessor :application_completed
 

@@ -15,14 +15,13 @@ $(document).on('ready turbolinks:load', () => {
       $('#check-yes').prop('checked', true);
       $('#medical-services').removeClass("d-none");
     }
-  } else if ($('#diability-input-field').val() != "") {
+  } else {
     $('#medical-services-question').addClass("d-none");
     $('#disability-input').removeClass("d-none");
   }
 });
 
 window.hideForms = function() {
-
   $('input[type="radio"]').click(function(){
     var inputValue = $(this).attr("value");
 

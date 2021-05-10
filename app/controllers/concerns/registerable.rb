@@ -56,7 +56,7 @@ module Registerable
       when :suggestions
         update_screen_conditions = !@camps_registration.filled_screen10
           
-        if @camps_registration.application_completed == CampsRegistration::PROGRESS_90 
+        if @camps_registration.application_completed == CampsRegistration::PROGRESS_VALUE 
           registration_params = { application_complete: true }
           screen_status = { filled_screen10: true }
         else 
@@ -65,8 +65,8 @@ module Registerable
         end
       end
 
+      @camps_registration.assign_attributes(screen_status) if update_screen_conditions if screen_status
       @camps_registration.update_attributes(registration_params) if registration_params
-      @camps_registration.update(screen_status) if update_screen_conditions if screen_status
 
       @camps_registration
     end

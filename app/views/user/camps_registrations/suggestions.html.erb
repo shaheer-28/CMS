@@ -17,13 +17,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn draft-btn secondary" data-dismiss="modal">Cancel</button>
-          <%= f.submit :Next , class:'btn draft-btn primary'%>
+          <%= f.submit :Next, class:'btn draft-btn primary'%>
         </div>
       </div>
     </div>
   </div>
 
-  <%= f.submit "Save Suggestion and submit application", id: 'popup', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-primary" %>
+  <%= f.submit "Save Suggestion and submit application", id: 'popup', remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-primary" %>
 <% end %>
 
 <div class="row">

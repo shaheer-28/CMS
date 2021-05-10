@@ -5,7 +5,6 @@ class Admin::LocationsController < Admin::AdminsController
 
   helper_method :sort_column, :sort_direction
   
-  before_action :location_params, only: %i[update create]
   before_action :set_location, only: %i[show edit update destroy]
 
   def index
