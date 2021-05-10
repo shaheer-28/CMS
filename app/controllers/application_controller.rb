@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if current_user.admin?
       stored_location_for(resource) || admin_camps_path
     elsif current_user.user?
-      stored_location_for(resource) || users_path
+      stored_location_for(resource) || user_camps_path
     end
   end
 

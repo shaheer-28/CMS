@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations", invitations: "users/invitations" }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { registrations: "overridden/registrations", invitations: "overridden/invitations" }
 
   root to: 'welcome#index'
 
   namespace :admin do
     resources :users
-    resources :camps
+    resources :locations
+    resources :camps do
+      patch :update_status, on: :member
+    end
+    resources :camps_registrations
   end
   
-  resources :users
+  namespace :user do
+    resources :camps do
+      get :introduction, on: :member
+    end
+    resources :camps_registrations
+    resources :users
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_114338) do
+ActiveRecord::Schema.define(version: 2021_04_28_211628) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +34,54 @@ ActiveRecord::Schema.define(version: 2021_04_19_114338) do
   end
 
   create_table "camps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "status", default: "inactive", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "camps_locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "camp_id"
+    t.index ["camp_id"], name: "index_camps_locations_on_camp_id"
+    t.index ["location_id"], name: "index_camps_locations_on_location_id"
+  end
+
+  create_table "camps_registrations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "camp_id"
+    t.bigint "user_id"
+    t.date "dob"
+    t.integer "age"
+    t.string "address"
+    t.string "gender"
+    t.string "disability", default: ""
+    t.string "medical_services", default: ""
+    t.string "activity_of_interest"
+    t.boolean "is_first_camp"
+    t.boolean "need_power_bank"
+    t.string "social_media_presence"
+    t.string "emergency_contact"
+    t.text "suggestion"
+    t.boolean "filled_screen1", default: false
+    t.boolean "filled_screen2", default: false
+    t.boolean "filled_screen3", default: false
+    t.boolean "filled_screen4", default: false
+    t.boolean "filled_screen5", default: false
+    t.boolean "filled_screen6", default: false
+    t.boolean "filled_screen7", default: false
+    t.boolean "filled_screen8", default: false
+    t.boolean "filled_screen9", default: false
+    t.boolean "filled_screen10", default: false
+    t.boolean "application_complete", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["camp_id"], name: "index_camps_registrations_on_camp_id"
+    t.index ["user_id"], name: "index_camps_registrations_on_user_id"
+  end
+
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,4 +121,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_114338) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "camps_locations", "camps"
+  add_foreign_key "camps_locations", "locations"
 end

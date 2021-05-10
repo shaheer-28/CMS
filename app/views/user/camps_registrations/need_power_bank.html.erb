@@ -1,0 +1,26 @@
+<%= render 'progress' %>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Do you need a power bank on rent for the trip ?" %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.radio_button("need_power_bank", "true") %>
+      <%= f.label "Yes" %>
+    </div>
+    <div class="col-sm-2">
+      <%= f.radio_button("need_power_bank", "false") %>
+      <%= f.label "No" %>
+    </div>
+  </div>
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-9"></div>
+  <div class="col-sm-1">
+    <%= link_to 'skip', next_wizard_path %>
+  </div>
+</div>

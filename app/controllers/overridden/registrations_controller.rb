@@ -1,4 +1,4 @@
-class Users::RegistrationsController < Devise::RegistrationsController
+class Overridden::RegistrationsController < Devise::RegistrationsController
     # Override the action you want here.
   before_action :configure_permitted_parameters
 

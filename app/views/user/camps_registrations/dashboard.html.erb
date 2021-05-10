@@ -1,0 +1,29 @@
+<h1>This is the application dashboard</h1><br>
+<h2>You have completed <%= @camps_registration.application_completed %> % of the application.</h2>
+<div class="progress">
+  <div class="progress-bar" style="width: <%= @camps_registration.application_completed %>%"></div>
+</div>
+<br>
+<div>
+  <ul class="list-group">
+    <li class="list-group-item <%= @camps_registration.filled_screen1 ? 'active' : 'disabled' %>">Personal Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen2 ? 'active' : 'disabled' %>">Medical Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen3 ? 'active' : 'disabled' %>">Age</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen4 ? 'active' : 'disabled' %>">Date of birth</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen5 ? 'active' : 'disabled' %>">Emergency Contact Information</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen6 ? 'active' : 'disabled' %>">Activity of interest</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen7 ? 'active' : 'disabled' %>">Is this your first camp with us ?</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen8 ? 'active' : 'disabled' %>">Do you need any powerbank for the trip</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen9 ? 'active' : 'disabled' %>">Social Media Presence</li>
+    <li class="list-group-item <%= @camps_registration.filled_screen10 ? 'active' : 'disabled' %>">Suggestion</li>
+  </ul>
+</div>
+<br>
+<% if (!@camps_registration.application_complete) %>
+  <%= button_to "Camp Application", user_camps_registration_path("personal_information"), method: :get, class: "btn btn-success btn-lg btn-block" %>
+<% else %>
+  <br>
+  <h3>You have completed your application and cannot view or edit the application now.</h3>
+<% end %>
+<%= link_to 'Back', introduction_user_camp_path(@camps_registration.camp) %>
+

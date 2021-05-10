@@ -1,0 +1,34 @@
+<%= render 'progress' %>
+<h1>This is the last step of the application</h1>
+<p>If you submit the application now you will not be able to edit any part of it later.</p><br>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Please feel free to enter any suggestions that you have: " %><br>
+  <%= f.text_field :suggestion %><br><br>
+
+  <div class="modal fade dd-modal" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class='modal-description top-padding'>
+            <p>Are you sure you want to submit application. You cannot view or edit it afterwords.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn draft-btn secondary" data-dismiss="modal">Cancel</button>
+          <%= f.submit :Next, class:'btn draft-btn primary'%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Save Suggestion and submit application", id: 'popup', remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-9"></div>
+</div>

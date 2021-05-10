@@ -1,7 +1,24 @@
 <tr>
-  <td><%= camp.id %></td>
-  <td><%= camp.location %></td>
+  <td><%= camp.name %></td>
+  <td>
+    <ul>
+      <% camp.locations.map do |l| %>
+        <li><%= l.location %></li>
+      <% end %>
+    </ul>
+  </td>
+  <td><%= camp.start_date %></td>
+  <td><%= camp.end_date %></td>
+  <td><%= camp.status %></td>
+  <td>
+    <label class="switch">
+      <input type="checkbox" class="camp-status rounded-pill" data-remote="true"
+    data-url="/admin/camps/<%= camp.id %>/update_status" data-method="patch" <%= "checked" if camp.active? %> >
+      <span class="slider round"></span>
+    </label>
+  </td>
   <td><%= link_to 'Show', admin_camp_path(camp) %></td>
   <td><%= link_to 'Edit', edit_admin_camp_path(camp) %></td>
   <td><%= link_to 'Delete', admin_camp_path(camp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
 </tr>

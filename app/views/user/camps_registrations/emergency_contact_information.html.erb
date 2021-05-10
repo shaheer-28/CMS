@@ -1,0 +1,19 @@
+<%= render 'progress' %><br>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Enter emergency contact number" %>
+  <%= f.telephone_field :emergency_contact, autofocus: true, required: true, pattern: '([0-9]{11})', max: 11, placeholder: '0333 1234567', autocomplete: :emergency_contact %>
+  <br><br>
+  
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-8"></div>
+  <div class="col-sm-2">
+    <%= link_to 'skip', next_wizard_path %>
+  </div>
+</div>

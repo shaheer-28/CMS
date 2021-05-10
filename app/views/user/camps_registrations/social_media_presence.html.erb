@@ -1,0 +1,17 @@
+<%= render 'progress' %>
+
+<%= form_for @camps_registration, url: wizard_path, method: :put do |f| %>
+  <%= f.label "Please enter link of any of your social media profile" %><br>
+  <%= f.text_field :social_media_presence %><br><br>
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <%= link_to "Back", previous_wizard_path %>
+  </div>
+  <div class="col-sm-9"></div>
+  <div class="col-sm-1">
+    <%= link_to 'skip', next_wizard_path %>
+  </div>
+</div>
